@@ -1,4 +1,4 @@
-{docdatetime}
+{localdatetime}
 
 = PlantAJ Documentation
 
