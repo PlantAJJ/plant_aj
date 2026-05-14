@@ -1,0 +1,44 @@
+name: Validate Branch Name
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  validate-branch-name:
+    name: Validate Branch Name
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check branch name
+        run: |
+          BRANCH="${{ github.head_ref }}"
+
+          echo "Branch name: $BRANCH"
+
+          # Pattern: <type>/<ticket_number>-<description>
+          # type       → conventional commit types
+          # ticket     → one or more digits
+          # description → lowercase letters, digits, hyphens (min 1 char)
+          PATTERN="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)/[0-9]+-[a-z0-9]+(-[a-z0-9]+)*$"
+
+          if [[ "$BRANCH" =~ $PATTERN ]]; then
+            echo "✅ Branch name '$BRANCH' is valid."
+          else
+            echo ""
+            echo "❌ Branch name '$BRANCH' does not match the required format."
+            echo ""
+            echo "Expected format:"
+            echo "  <type>/<ticket_number>-<description>"
+            echo ""
+            echo "Allowed types:"
+            echo "  feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+            echo ""
+            echo "Examples of valid branch names:"
+            echo "  feat/0001-user-authentication"
+            echo "  fix/0042-null-pointer-exception"
+            echo "  chore/1234-update-dependencies"
+            echo "  docs/0007-api-reference"
+            echo ""
+            exit 1
+          fi
