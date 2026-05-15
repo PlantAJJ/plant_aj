@@ -1,12 +1,12 @@
-name: Production security checks
+name: Main branch security checks
 
 on:
   pull_request:
     branches:
-      - production
+      - main
   push:
     branches:
-      - production
+      - main
 
 permissions:
   contents: read
