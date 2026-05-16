@@ -1,0 +1,565 @@
+= Engineering Code of Conduct
+:toc: left
+:toc-title: Table of Contents
+:toclevels: 3
+:sectnums:
+:icons: font
+:source-highlighter: rouge
+:revdate: {localdate}
+:organization: Your Company Name
+
+== Purpose
+
+This document defines the engineering standards, conventions, and behavioral expectations for all engineers working on this project.
+It is **mandatory** for every team member — regardless of seniority, role, or team.
+It is not a suggestion.
+
+Consistency, predictability, and mutual respect are non-negotiable.
+A codebase that ten people treat differently is a codebase nobody understands.
+
+== Scope
+
+This Code of Conduct applies to:
+
+* All code written, reviewed, or merged into any repository under this project
+* All communication in team channels, code reviews, tickets, and meetings related to this project
+* All environments: development, staging, and production
+
+'''
+
+== Section I — General
+:numbered:
+
+== Professional Conduct
+
+=== Collaboration
+
+* Treat every team member with respect — in code reviews, standups, Slack, and written documentation
+* Assume good intent before assuming incompetence or negligence
+* Disagreements on technical decisions must be resolved with arguments and evidence, not authority or volume
+* If a decision is blocked, escalate to the tech lead — do not let it stall indefinitely
+* Junior engineers have the same right to raise concerns as seniors — seniority does not override correctness
+
+=== Code Reviews
+
+Reviews are a **shared responsibility**, not a gate to be passed.
+
+* Reviews must be completed within **48 business hours** of assignment
+* Be specific — point to the exact line, explain why it matters, and suggest an alternative
+* Do not approve code you do not understand — ask questions first
+* Use the following prefixes to signal the weight of a comment:
+
+[cols="1,4", options="header"]
+|===
+| Prefix | Meaning
+| `[BLOCKER]` | Must be resolved before merge
+| `[SUGGESTION]` | Optional improvement, author decides
+| `[QUESTION]` | Clarification needed, non-blocking
+| `[NIT]` | Trivial style issue, non-blocking
+| `[PRAISE]` | Acknowledge something well done
+|===
+
+* At least **one approval** from a peer is required before merging
+* Self-merging without review is prohibited except in declared emergencies, which must be logged
+
+=== Incidents & Mistakes
+
+* Own your mistakes — report issues as soon as they are discovered, not after they escalate
+* Blame is not a post-mortem — blameless retrospectives are the standard
+* Every production incident must produce a written post-mortem within 48 hours
+* A mistake fixed and documented is more valuable than a mistake hidden
+
+== Version Control & Git
+
+=== Branching
+
+[source]
+----
+<type>/<id-of-task-if-applicable><short-description>
+
+feat/0001-user-authentication
+fix/token-expiry-bug
+chore/0234-update-dependencies
+refactor/auth-middleware
+----
+
+[cols="1,3", options="header"]
+|===
+| Type | Purpose
+| `feat` | New feature
+| `fix` | Bug fix
+| `chore` | Maintenance, dependency updates
+| `docs` | Documentation changes only
+| `refactor` | Code restructuring, no behavior change
+| `test` | Adding or updating tests
+| `ci` | CI/CD pipeline changes
+| `perf` | Performance improvements
+| `hotfix` | Urgent production fix
+|===
+
+* Never commit directly to `main` or `develop`
+* Delete branches after merging
+* One concern per branch — do not bundle unrelated changes
+
+=== Commit Messages
+
+Follow https://www.conventionalcommits.org/[Conventional Commits]:
+
+[source]
+----
+<type>(<scope>): <short summary in imperative mood>
+
+[optional body — explain WHY, not WHAT]
+
+[optional footer: issue refs, breaking changes]
+----
+
+.Examples
+[source]
+----
+feat(auth): add refresh token rotation
+
+fix(payments): handle null response from payment provider
+
+chore(deps): bump pydantic from 1.10 to 2.0
+
+BREAKING CHANGE: all validators must be migrated to v2 syntax
+----
+
+Rules:
+
+* Summary line: **72 characters max**, imperative mood ("add", not "added")
+* Body: explain the reasoning, not the diff
+* Reference internal tickets in the footer: `Refs: PROJ-42`, `Closes: PROJ-100`
+* Mark breaking changes explicitly: `BREAKING CHANGE: <description>`
+
+=== Pull Requests
+
+* PR description must answer: *what changed*, *why it changed*, and *how to test it*
+* All CI checks must pass before requesting review
+* Squash-merge feature branches onto `develop`; merge-commit releases onto `main`
+* PRs touching infrastructure, database migrations, or security-sensitive code require **two approvals**
+* Keep PRs small — a PR that touches more than 500 lines across unrelated concerns will be rejected
+
+== Documentation
+
+* Every service, module, and non-obvious function must be documented
+* Architectural decisions must be recorded in `/docs/adr/` using the https://adr.github.io/[MADR] template before implementation begins
+* Keep `CHANGELOG.md` updated with every release using https://keepachangelog.com/[Keep a Changelog] format
+* README must always reflect the current local setup, run, and test steps — outdated READMEs are bugs
+* Do not document *what* the code does if the code is already readable — document *why*
+
+== Security
+
+* **Never** commit secrets, API keys, tokens, passwords, or credentials to version control — ever
+* Use the team-designated secrets manager (e.g., Vault, AWS Secrets Manager) in all non-local environments
+* `.env` files are for local development only and must be listed in `.gitignore`
+* All third-party dependencies must be pinned to exact versions in lock files
+* Dependency vulnerability scans (`pip audit`, `npm audit`) run in CI — a failing scan **blocks merge**
+* Follow the principle of **least privilege** for all service accounts, IAM roles, and API tokens
+* Security issues discovered internally must be reported to the tech lead **before** any fix is pushed
+
+== Testing
+
+* Tests are not optional — untested code is **incomplete code**
+* The full test suite must be runnable locally with a single command
+* Tests must be deterministic — flaky tests are bugs and must be fixed immediately
+* Do not merge if the test suite is red
+
+[cols="1,2,2", options="header"]
+|===
+| Level | Scope | Tools
+| Unit | Single function / class | pytest, vitest
+| Integration | Module interactions, DB, external APIs | pytest + testcontainers, vitest
+| E2E | Critical user flows | Playwright
+|===
+
+* Write tests **alongside** the code, not after the PR is approved
+* A bug fix without a regression test will be sent back for revision
+
+'''
+
+== Section II — Frontend (TypeScript)
+:numbered:
+
+== Language & Tooling
+
+* Language: **TypeScript** — strict mode, no exceptions
+* Runtime: **Node.js LTS**, version pinned in `.nvmrc` and `package.json#engines`
+* Package manager: **pnpm** — do not use `npm` or `yarn`, do not mix
+* Framework: as designated per project (React / Next.js / Vue — see project README)
+
+`tsconfig.json` must enforce:
+
+[source,json]
+----
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true
+  }
+}
+----
+
+== Naming Conventions
+
+[cols="2,2,3", options="header"]
+|===
+| Construct | Convention | Example
+| Variables & functions | `camelCase` | `getUserById`, `isLoading`
+| Module-level constants | `SCREAMING_SNAKE_CASE` | `MAX_RETRY_COUNT`
+| Types & Interfaces | `PascalCase` | `UserProfile`, `AuthToken`
+| Enums | `PascalCase` (members: `SCREAMING_SNAKE_CASE`) | `Status.NOT_FOUND`
+| React components | `PascalCase` | `UserCard`, `LoginForm`
+| React hooks | `camelCase` prefixed with `use` | `useAuthSession`, `usePagination`
+| Component files | `PascalCase.tsx` | `UserCard.tsx`
+| Hook / util files | `camelCase.ts` | `useAuthSession.ts`, `formatDate.ts`
+| Test files | Same name + `.test` or `.spec` | `UserCard.test.tsx`
+| CSS modules | `camelCase` | `styles.cardWrapper`
+| Directories | `kebab-case` | `user-management/`, `auth-flow/`
+|===
+
+== Project Structure
+
+[source]
+----
+src/
+├── app/                  # Routing and page-level components
+├── components/
+│   ├── ui/               # Primitive / design-system components
+│   └── features/         # Feature-specific composed components
+├── hooks/                # Custom React hooks
+├── lib/                  # Utility functions, third-party wrappers
+├── services/             # API client and data-fetching logic
+├── store/                # Global state
+├── types/                # Shared TypeScript types and interfaces
+└── styles/               # Global styles and design tokens
+----
+
+== TypeScript Rules
+
+* **Never** use `any` — use `unknown` and narrow with type guards
+* Always annotate return types on all exported functions
+* Prefer `type` for unions and primitives; use `interface` for object shapes that may be extended
+* Never use non-null assertion (`!`) unless you can prove it — add a comment on the same line justifying it
+* Parameterize all generics — no bare `Array`, `Promise`, `Record`
+
+[source,typescript]
+----
+// Forbidden
+const process = (data: any) => { ... }
+
+// Required
+const process = (data: unknown): ProcessedResult => {
+  if (!isValidPayload(data)) throw new ValidationError("Invalid payload");
+  ...
+}
+----
+
+== Component Guidelines
+
+* Functional components only — no class components
+* One primary responsibility per component
+* Co-locate related files: `UserCard.tsx`, `UserCard.test.tsx`, `UserCard.module.css`
+* No data fetching inside presentational components — use hooks or server components
+* Extract repeated JSX into a component when duplicated more than twice
+* Use `React.memo`, `useMemo`, `useCallback` only when a measured performance issue exists — not speculatively
+
+.Internal file structure order
+[source,typescript]
+----
+// 1. Imports (external → internal → types)
+// 2. Local types / interfaces
+// 3. Component-scoped constants
+// 4. Component definition
+// 5. Tightly coupled sub-components (if small)
+// 6. Default export
+----
+
+== State Management
+
+* Prefer **local state** (`useState`) unless the state genuinely needs to be shared
+* For shared client state: use the designated store solution (Zustand)
+* For server/async state: use **TanStack Query** — do not duplicate server data in global stores
+* Never store derived data in state — compute it at render time
+* Global store slices must be colocated with the feature that owns them
+
+== API & Data Fetching
+
+* All API calls must go through the `/services` layer — never call `fetch` directly from a component
+* Validate all API responses at the boundary using **Zod**
+
+[source,typescript]
+----
+const userSchema = z.object({
+  id: z.string().uuid(),
+  email: z.string().email(),
+  createdAt: z.string().datetime(),
+});
+
+type User = z.infer<typeof userSchema>;
+----
+
+* Handle **loading**, **error**, and **empty** states explicitly — never assume success
+* Base URLs and environment-specific values must come from environment variables only
+* Never hardcode internal service URLs or ports
+
+== Error Handling
+
+* Use **Error Boundaries** to isolate component-level failures
+* All async functions must handle errors explicitly — no silent `catch(() => {})` blocks
+* Route all error reporting through the centralized monitoring utility in `/lib/monitoring`
+* Never expose raw error messages, stack traces, or internal paths to the end user
+
+== Styling
+
+* Use the project-designated styling solution — do not introduce alternatives
+* Design tokens (colors, spacing, typography, breakpoints) must come from the shared design system — no magic numbers or hardcoded hex values
+* Mobile-first responsive design is the default
+* Do not use inline styles except for values that are genuinely dynamic at runtime
+
+== Linting & Formatting
+
+* **ESLint** with the project config — **zero warnings** policy enforced in CI
+* **Prettier** for all formatting — no manual formatting, no debates
+* Pre-commit hooks via **Husky + lint-staged** run linting and type-checking before every commit
+* Disabling a lint rule inline requires a comment explaining the justification
+
+[source,typescript]
+----
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- third-party SDK returns untyped response
+----
+
+== Accessibility (a11y)
+
+* All interactive elements must be keyboard-navigable
+* All images must have meaningful `alt` text
+* Use semantic HTML (`<button>`, `<nav>`, `<main>`, `<article>`) — do not use `<div>` as a button
+* Validate with `eslint-plugin-jsx-a11y`
+* New user-facing features must pass a Lighthouse accessibility audit before merging
+
+'''
+
+== Section III — Backend (Python)
+:numbered:
+
+== Language & Tooling
+
+* Language: **Python 3.11+** — no exceptions
+* Package manager: **uv**
+* Dependency declaration: `pyproject.toml` (PEP 517/518)
+* Lock file (`uv.lock`) must be committed and kept up to date
+
+== Code Style & Formatting
+
+* Formatter & linter: **Ruff** (replaces Black + isort + flake8)
+* Max line length: **99 characters**
+* Zero violations on `main` — CI blocks merge on any Ruff error
+
+[source,toml]
+----
+[tool.ruff]
+line-length = 99
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "ANN", "S", "B", "C4", "PTH"]
+ignore = ["ANN101", "ANN102"]
+----
+
+== Naming Conventions
+
+[cols="2,2,3", options="header"]
+|===
+| Construct | Convention | Example
+| Variables & functions | `snake_case` | `get_user_by_id`, `is_active`
+| Constants | `SCREAMING_SNAKE_CASE` | `MAX_CONNECTION_RETRIES`
+| Classes | `PascalCase` | `UserRepository`, `AuthService`
+| Modules / files | `snake_case.py` | `user_repository.py`
+| Packages / directories | `snake_case` | `user_management/`, `core/`
+| Private attributes | `_single_leading_underscore` | `_cache`, `_session`
+| Type aliases | `PascalCase` | `UserId`, `ResponseT`
+| Abstract / base classes | `Base` suffix or `Abstract` prefix | `BaseRepository`, `AbstractParser`
+|===
+
+== Project Structure
+
+[source]
+----
+src/
+├── api/                  # Route handlers (FastAPI routers)
+│   └── v1/               # Versioned endpoints
+├── core/                 # App factory, config, middleware, lifespan
+├── domain/               # Business logic — pure Python, no framework imports
+│   ├── models/           # Pydantic domain models
+│   └── services/         # Business logic services
+├── infrastructure/       # External integrations
+│   ├── database/         # ORM models, repositories, Alembic migrations
+│   ├── cache/            # Redis / cache adapters
+│   └── messaging/        # Queues, event bus adapters
+├── dependencies/         # FastAPI Depends() providers
+└── tests/                # Mirrors src/ structure
+----
+
+== Type Annotations
+
+* **All** functions and methods must have complete type annotations — parameters and return type
+* Enable `mypy` in strict mode and run in CI — zero errors on `main`
+* Use `from __future__ import annotations` at the top of every module
+* Use `TypeAlias` for complex reused types
+* Never use bare `dict` or `list` — always parameterize: `dict[str, Any]`, `list[UserDTO]`
+* Prefer `X | None` over `Optional[X]` (Python 3.10+ union syntax)
+
+[source,python]
+----
+from __future__ import annotations
+from typing import TypeAlias
+
+UserId: TypeAlias = str
+
+async def get_user(user_id: UserId) -> UserResponse | None:
+    ...
+----
+
+== Pydantic & Data Validation
+
+* Use **Pydantic v2** for all data models, request/response schemas, and app configuration
+* Validate **all** external input at the boundary — HTTP request bodies, query params, env vars, message payloads
+* Never construct domain objects from raw `dict` — always pass through a validated schema
+* Use `model_config = ConfigDict(frozen=True)` for value objects and DTOs
+
+[source,python]
+----
+from pydantic import BaseModel, ConfigDict, EmailStr, field_validator
+
+class CreateUserRequest(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, frozen=True)
+
+    email: EmailStr
+    username: str
+
+    @field_validator("username")
+    @classmethod
+    def username_alphanumeric(cls, v: str) -> str:
+        if not v.isalnum():
+            raise ValueError("Username must be alphanumeric")
+        return v.lower()
+----
+
+== Error Handling
+
+* Use **custom exception classes** — never raise bare `Exception` or `ValueError` from domain code
+
+[source,python]
+----
+class AppError(Exception):
+    """Root exception for all application errors."""
+
+class NotFoundError(AppError): ...
+class AuthorizationError(AppError): ...
+class ConflictError(AppError): ...
+class ValidationError(AppError): ...
+----
+
+* Map domain exceptions to HTTP responses in a **centralized exception handler** registered on app startup
+* Never let unhandled exceptions produce raw 500 responses — every unhandled path must be caught and logged
+* Always log exceptions with structured context (`user_id`, `request_id`, `correlation_id`)
+
+== Logging
+
+* Use **structured JSON logging** in all non-local environments via `structlog` or `python-json-logger`
+* Never use `print()` for application logging
+* Log at the correct level:
+
+[cols="1,3", options="header"]
+|===
+| Level | When to use
+| `DEBUG` | Detailed diagnostic info — local development only
+| `INFO` | Normal operational events (request received, job started, migration applied)
+| `WARNING` | Unexpected but recoverable situations
+| `ERROR` | Failures requiring attention — always include exception info
+| `CRITICAL` | System-level failures, unrecoverable errors
+|===
+
+* **Never** log: passwords, tokens, full credit card numbers, PII (names, emails in free-form logs)
+* Every log entry in a request context must include `request_id` and `correlation_id`
+
+== Database & ORM
+
+* ORM: **SQLAlchemy 2.x** with async support (`AsyncSession`)
+* All schema changes must go through **Alembic** migrations — never alter the schema manually in any environment
+* Migration files are reviewed with the same rigor as application code
+* Use the **Repository pattern** — no database queries in route handlers or service layer
+* Always use parameterized queries — never format SQL strings manually
+* Database sessions are managed by the dependency injection layer — never instantiate a session manually in business logic
+
+[source,python]
+----
+# Correct — repository method
+async def get_by_id(self, user_id: UserId) -> User | None:
+    result = await self._session.execute(
+        select(UserORM).where(UserORM.id == user_id)
+    )
+    return result.scalar_one_or_none()
+----
+
+== Dependency Injection
+
+* Use **FastAPI's `Depends()`** for all shared resources: DB sessions, services, auth context, HTTP clients
+* All providers must be defined in the `/dependencies` package
+* Do not use module-level singletons for stateful resources — inject them
+* Services must not instantiate their own dependencies — receive them via constructor injection
+
+== Async & Concurrency
+
+* Use `async`/`await` throughout — do not mix sync and async on the same execution path without explicit offloading
+* CPU-bound tasks must be offloaded via `asyncio.to_thread` or `concurrent.futures.ProcessPoolExecutor`
+* Never call blocking I/O inside an async function: no sync DB calls, no `time.sleep()`, no blocking file reads
+* Use `asyncio.gather()` for concurrent independent operations — do not await them sequentially when order does not matter
+
+== Security
+
+* Validate and sanitize **all** input from external sources before use — trust nothing from outside the service boundary
+* Use **`argon2-cffi`** for password hashing — MD5, SHA1, and bcrypt without work factor tuning are forbidden
+* JWT tokens must have explicit `exp`, and validation must check `exp`, `iss`, and `aud` claims
+* Apply **rate limiting** on all public-facing and authentication endpoints
+* Set security headers via middleware on every response: `Strict-Transport-Security`, `X-Content-Type-Options`, `X-Frame-Options`
+* Never log full request bodies that may contain credentials or PII
+
+== Testing
+
+* Framework: **pytest** with `pytest-asyncio` for async test cases
+* Use **factories** (`factory_boy`) for complex object construction — no hard-coded fixture dictionaries
+* Use **`testcontainers-python`** for integration tests that require a real database or broker
+* Mock only external I/O (third-party HTTP calls, SaaS SDKs) — do not mock your own domain logic
+* Test file mirrors source path exactly: `src/domain/services/auth.py` → `tests/domain/services/test_auth.py`
+* Minimum coverage threshold: **80%** on the `domain/` and `api/` packages — enforced in CI
+
+[source,bash]
+----
+pytest --cov=src --cov-fail-under=80 --cov-report=term-missing
+----
+
+'''
+
+== Enforcement
+
+Violations of this Code of Conduct are handled as follows:
+
+[cols="1,3,2", options="header"]
+|===
+| Severity | Examples | Response
+| **Minor** | Formatting violations, missing docstring, wrong branch name | PR revision requested
+| **Moderate** | Self-merge without review, skipping tests, hardcoded secrets in dev only | Written warning, mandatory team review
+| **Serious** | Committing credentials, bypassing CI, falsifying test coverage | Escalation to engineering lead and HR
+| **Critical** | Intentional sabotage, data exfiltration, production access misuse | Immediate escalation, disciplinary action
+|===
+
+Questions or concerns about this document should be raised with the **Engineering Lead** or submitted via the internal feedback process.
+
+'''
+
+_Last updated: {revdate} — {organization} Engineering_
