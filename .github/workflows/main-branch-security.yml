@@ -13,7 +13,7 @@ permissions:
   security-events: write
 
 jobs:
-    dependency-audit:
+  dependency-audit:
     name: Dependency security audit
     runs-on: ubuntu-latest
 
