@@ -1,0 +1,19 @@
+= Frontend Documentation
+:toc:
+:toclevels: 2
+:sectnums:
+
+The frontend application provides the user interface for PlantAJ.
+
+== Sections
+
+* xref:setup.adoc[Setup]
+* xref:components.adoc[Components]
+* xref:architecture.adoc[Architecture]
+
+== Features
+
+* Responsive UI
+* Plant identification upload
+* Care recommendations
+* Notifications dashboard
