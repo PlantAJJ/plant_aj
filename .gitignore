@@ -146,4 +146,5 @@ vite.config.ts.timestamp-*
 frontend/node_modules
 backend/.venv
 __pycache__
+.pytest_cache/
 .env
