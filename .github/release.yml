@@ -1,0 +1,16 @@
+changelog:
+  exclude:
+    labels:
+      - duplicate
+      - setup
+      - invalid
+  categories:
+    - title: "🚀 Features & Enhancements"
+      labels:
+        - enhancement
+    - title: "🐛 Bug Fixes"
+      labels:
+        - bug
+    - title: "📝 Documentation"
+      labels:
+        - documentation
