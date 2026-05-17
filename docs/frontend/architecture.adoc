@@ -1,0 +1,25 @@
+= Frontend Architecture
+:toc:
+:sectnums:
+
+== Overview
+
+The frontend follows a component-based architecture.
+
+== Technologies
+
+* React
+* TypeScript
+* Tailwind CSS
+
+== Structure
+
+[source,text]
+----
+src/
+├── components/
+├── pages/
+├── hooks/
+├── services/
+└── utils/
+----

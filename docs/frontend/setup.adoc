@@ -1,0 +1,30 @@
+= Frontend Setup
+:toc:
+:sectnums:
+:node-version: 22
+
+== Requirements
+
+* Node.js {node-version}
+* npm
+
+== Installation
+
+[source,bash]
+----
+npm install
+----
+
+== Run Development Server
+
+[source,bash]
+----
+npm run dev
+----
+
+== Build Production Version
+
+[source,bash]
+----
+npm run build
+----
