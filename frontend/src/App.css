@@ -104,6 +104,55 @@
   }
 }
 
+#project-status {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.status-card {
+  padding: 28px 32px;
+  text-align: left;
+
+  & + & {
+    border-left: 1px solid var(--border);
+  }
+
+  span {
+    display: inline-flex;
+    margin-bottom: 14px;
+    padding: 4px 9px;
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    color: var(--accent);
+    background: var(--accent-bg);
+    font: 12px/1 var(--mono);
+    text-transform: uppercase;
+  }
+
+  p {
+    max-width: 26ch;
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px 20px;
+    text-align: center;
+
+    & + & {
+      border-left: none;
+      border-top: 1px solid var(--border);
+    }
+
+    p {
+      max-width: none;
+    }
+  }
+}
+
 #next-steps ul {
   list-style: none;
   padding: 0;

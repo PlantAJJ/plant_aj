@@ -4,6 +4,24 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
+const projectStatus = [
+  {
+    title: 'Frontend',
+    description: 'React + Vite workspace ready for UI development.',
+    state: 'ready',
+  },
+  {
+    title: 'Backend',
+    description: 'Python service scaffold prepared for API work.',
+    state: 'ready',
+  },
+  {
+    title: 'Workflow',
+    description: 'Issue labels and project statuses documented.',
+    state: 'documented',
+  },
+]
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -16,9 +34,10 @@ function App() {
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-          <h1>Get started</h1>
+          <h1>Plant AJ setup</h1>
           <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            Initial frontend and backend workspaces are separated and ready for
+            feature development.
           </p>
         </div>
         <button
@@ -32,24 +51,36 @@ function App() {
 
       <div className="ticks"></div>
 
+      <section id="project-status" aria-label="Project setup status">
+        {projectStatus.map((item) => (
+          <article className="status-card" key={item.title}>
+            <span>{item.state}</span>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </section>
+
+      <div className="ticks"></div>
+
       <section id="next-steps">
         <div id="docs">
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#documentation-icon"></use>
           </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
+          <h2>Frontend</h2>
+          <p>React app structure and Vite tooling.</p>
           <ul>
             <li>
-              <a href="https://vite.dev/" target="_blank">
+              <a href="https://vite.dev/" target="_blank" rel="noreferrer">
                 <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
+                Vite docs
               </a>
             </li>
             <li>
-              <a href="https://react.dev/" target="_blank">
+              <a href="https://react.dev/" target="_blank" rel="noreferrer">
                 <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
+                React docs
               </a>
             </li>
           </ul>
@@ -62,7 +93,11 @@ function App() {
           <p>Join the Vite community</p>
           <ul>
             <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
+              <a
+                href="https://github.com/vitejs/vite"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -74,7 +109,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://chat.vite.dev/" target="_blank">
+              <a href="https://chat.vite.dev/" target="_blank" rel="noreferrer">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -86,7 +121,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://x.com/vite_js" target="_blank">
+              <a href="https://x.com/vite_js" target="_blank" rel="noreferrer">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -98,7 +133,11 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
+              <a
+                href="https://bsky.app/profile/vite.dev"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <svg
                   className="button-icon"
                   role="presentation"
