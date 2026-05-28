@@ -22,6 +22,24 @@ const projectStatus = [
   },
 ];
 
+const projectStatus = [
+  {
+    title: 'Frontend',
+    description: 'React + Vite workspace ready for UI development.',
+    state: 'ready',
+  },
+  {
+    title: 'Backend',
+    description: 'Python service scaffold prepared for API work.',
+    state: 'ready',
+  },
+  {
+    title: 'Workflow',
+    description: 'Issue labels and project statuses documented.',
+    state: 'documented',
+  },
+]
+
 function App() {
   const [count, setCount] = useState(0);
 
