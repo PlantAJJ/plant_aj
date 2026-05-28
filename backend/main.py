@@ -12,7 +12,7 @@ def get_service_status() -> dict[str, str]:
 def main() -> None:
     status = get_service_status()
     print(f"{status['service']} is {status['status']} at {status['timestamp']}")
-
+    print(f"Im watering olololo")
 
 if __name__ == "__main__":
     main()
