@@ -1,29 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import heroImg from "./assets/hero.png";
+import "./App.css";
+import SunlightGuidance from "./SunlightGuidance";
 
 const projectStatus = [
   {
-    title: 'Frontend',
-    description: 'React + Vite workspace ready for UI development.',
-    state: 'ready',
+    title: "Frontend",
+    description: "React + Vite workspace ready for UI development.",
+    state: "ready",
   },
   {
-    title: 'Backend',
-    description: 'Python service scaffold prepared for API work.',
-    state: 'ready',
+    title: "Backend",
+    description: "Python service scaffold prepared for API work.",
+    state: "ready",
   },
   {
-    title: 'Workflow',
-    description: 'Issue labels and project statuses documented.',
-    state: 'documented',
+    title: "Workflow",
+    description: "Issue labels and project statuses documented.",
+    state: "documented",
   },
-]
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -48,6 +49,10 @@ function App() {
           Count is {count}
         </button>
       </section>
+
+      <div className="ticks"></div>
+
+      <SunlightGuidance />
 
       <div className="ticks"></div>
 
@@ -155,7 +160,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
