@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
+import { PlantProfile } from "./components/PlantProfile/PlantProfile";
 import "./App.css";
 
 const projectStatus = [
@@ -22,23 +23,6 @@ const projectStatus = [
   },
 ];
 
-const projectStatus = [
-  {
-    title: 'Frontend',
-    description: 'React + Vite workspace ready for UI development.',
-    state: 'ready',
-  },
-  {
-    title: 'Backend',
-    description: 'Python service scaffold prepared for API work.',
-    state: 'ready',
-  },
-  {
-    title: 'Workflow',
-    description: 'Issue labels and project statuses documented.',
-    state: 'documented',
-  },
-]
 
 function App() {
   const [count, setCount] = useState(0);
@@ -69,6 +53,10 @@ function App() {
 
       <div className="ticks"></div>
 
+      <PlantProfile />
+
+      <div className="ticks"></div>
+      
       <section id="project-status" aria-label="Project setup status">
         {projectStatus.map((item) => (
           <article className="status-card" key={item.title}>
