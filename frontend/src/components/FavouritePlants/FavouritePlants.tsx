@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { mockPlants, type Plant } from '../../data/mockPlants';
-import './FavouritePlants.css';
+import { useState } from "react";
+import { mockPlants, type Plant } from "../../data/mockPlants";
+import "./FavouritePlants.css";
 
 export function FavouritePlants() {
   const [savedPlants, setSavedPlants] = useState<Plant[]>([]);
@@ -19,7 +19,7 @@ export function FavouritePlants() {
 
   const removePlant = (plantId: number) => {
     setSavedPlants((currentPlants) =>
-      currentPlants.filter((plant) => plant.name !== String(plantId))
+      currentPlants.filter((plant) => plant.name !== String(plantId)),
     );
   };
 
@@ -57,7 +57,7 @@ export function FavouritePlants() {
                   onClick={() => savePlant(plant)}
                   disabled={isPlantSaved(plant.id)}
                 >
-                  {isPlantSaved(plant.id) ? 'Saved' : 'Save plant'}
+                  {isPlantSaved(plant.id) ? "Saved" : "Save plant"}
                 </button>
               </article>
             ))}
