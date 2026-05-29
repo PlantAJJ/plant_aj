@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { mockPlants } from '../../data/mockPlants';
+import { mockPlants, type Plant } from '../../data/mockPlants';
 import './FavouritePlants.css';
 
 export function FavouritePlants() {
-  const [savedPlants, setSavedPlants] = useState([]);
+  const [savedPlants, setSavedPlants] = useState<Plant[]>([]);
 
-  const isPlantSaved = (plantId) => {
+  const isPlantSaved = (plantId: number) => {
     return savedPlants.some((plant) => plant.id === plantId);
   };
 
-  const savePlant = (plant) => {
+  const savePlant = (plant: Plant) => {
     if (isPlantSaved(plant.id)) {
       return;
     }
@@ -17,16 +17,16 @@ export function FavouritePlants() {
     setSavedPlants((currentPlants) => [...currentPlants, plant]);
   };
 
-  const removePlant = (plantId) => {
+  const removePlant = (plantId: number) => {
     setSavedPlants((currentPlants) =>
-      currentPlants.filter((plant) => plant.name !== plantId)
+      currentPlants.filter((plant) => plant.name !== String(plantId))
     );
   };
 
   return (
     <section className="favourite-plants-page">
       <header className="favourite-plants-header">
-        <h1>Favourite Plants</h1>
+        <h2>Favourite Plants</h2>
         <p>
           Save plants to your personal collection and track them later from your
           dashboard.
@@ -35,12 +35,12 @@ export function FavouritePlants() {
 
       <div className="plants-layout">
         <section className="plants-section">
-          <h2>Available plants</h2>
+          <h3>Available plants</h3>
 
           <div className="plants-grid">
             {mockPlants.map((plant) => (
               <article className="plant-card" key={plant.id}>
-                <h3>{plant.name}</h3>
+                <h4>{plant.name}</h4>
                 <p>{plant.type}</p>
 
                 <ul>
@@ -65,7 +65,7 @@ export function FavouritePlants() {
         </section>
 
         <section className="dashboard-section">
-          <h2>User dashboard</h2>
+          <h3>User dashboard</h3>
 
           {savedPlants.length === 0 ? (
             <p className="empty-message">No favourite plants saved yet.</p>
@@ -74,7 +74,7 @@ export function FavouritePlants() {
               {savedPlants.map((plant) => (
                 <article className="saved-plant-card" key={plant.id}>
                   <div>
-                    <h3>{plant.name}</h3>
+                    <h4>{plant.name}</h4>
                     <p>{plant.type}</p>
                   </div>
 
