@@ -19,7 +19,7 @@ export function FavouritePlants() {
 
   const removePlant = (plantId: number) => {
     setSavedPlants((currentPlants) =>
-      currentPlants.filter((plant) => plant.name !== String(plantId)),
+      currentPlants.filter((plant) => plant.id !== plantId),
     );
   };
 
