@@ -1,4 +1,12 @@
-export const mockPlants = [
+export type Plant = {
+  id: number;
+  name: string;
+  type: string;
+  watering: string;
+  sunlight: string;
+};
+
+export const mockPlants: Plant[] = [
   {
     id: 1,
     name: 'Monstera Deliciosa',
