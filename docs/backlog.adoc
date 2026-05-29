@@ -1,0 +1,645 @@
+= PlantAJ – Agile Backlog, Milestones, and Pull Request Plan
+:toc:
+:toclevels: 4
+:sectnums:
+
+== Project Summary
+
+PlantAJ is an AI-powered plant support application designed to help users identify plants, diagnose problems, and receive personalized plant care recommendations.
+
+The project simulates a real Agile software development lifecycle using:
+
+* GitHub Issues
+* User Stories
+* Milestones
+* Pull Requests
+* CI/CD checks
+* Branching strategies
+* Agile sprint planning
+* Project documentation
+
+== Product Vision
+
+Build an intelligent assistant for plant owners that provides:
+
+* Plant identification
+* Care recommendations
+* Disease/problem detection
+* Watering and sunlight guidance
+* AI-powered support and suggestions
+
+== Suggested Milestones
+
+=== Milestone 1 — Project Setup & Foundation
+
+*Goal:* Prepare the repository, development workflow, and initial application structure.
+
+==== Deliverables
+
+* Repository setup
+* Branching strategy
+* CI pipeline
+* Frontend scaffold
+* Backend scaffold
+* Database setup
+* Github Pages setup
+* Github Wiki
+* Documentation baseline
+
+=== Milestone 2 — Core Plant Features
+
+*Goal:* Implement core user-facing plant management features.
+
+==== Deliverables
+
+* Plant identification
+* Plant profile pages
+* Care recommendation engine
+* Watering schedules
+* Sunlight guidance
+
+=== Milestone 3 — AI Problem Detection
+
+*Goal:* Add AI-assisted plant issue detection.
+
+==== Deliverables
+
+* Plant disease detection
+* AI recommendations
+* Issue history
+* Confidence scoring
+
+=== Milestone 4 — User Experience & Notifications
+
+*Goal:* Improve usability and engagement.
+
+==== Deliverables
+
+* Notifications/reminders
+* User dashboard
+* Saved plants
+* Responsive UI
+* Accessibility improvements
+
+=== Milestone 5 — Release & Deployment
+
+*Goal:* Prepare production-ready release.
+
+==== Deliverables
+
+* Deployment pipeline
+* Monitoring/logging
+* Security review
+* Final testing
+* Release documentation
+
+== Product Backlog (User Stories)
+
+=== Epic 1 — Project Infrastructure
+
+==== US-001: Repository Initialization
+
+*As a* developer +
+*I want* a properly configured repository +
+*So that* the team can collaborate efficiently.
+
+===== Acceptance Criteria
+
+* GitHub repository created
+* README added
+* Branch protection enabled
+* .gitignore configured
+* Contribution guide added
+
+===== Suggested Labels
+
+`setup`, `documentation`, `high-priority`
+
+==== US-002: CI/CD Pipeline Setup
+
+*As a* developer +
+*I want* automated CI checks +
+*So that* code quality is maintained.
+
+===== Acceptance Criteria
+
+* Linting runs automatically
+* Tests execute on pull requests
+* Build validation enabled
+* Workflow status visible in PRs
+
+===== Suggested Labels
+
+`devops`, `ci/cd`
+
+==== US-003: Frontend Application Scaffold
+
+*As a* developer +
+*I want* a frontend starter structure +
+*So that* UI features can be developed consistently.
+
+===== Acceptance Criteria
+
+* Frontend framework initialized
+* Routing configured
+* Shared component structure created
+* Styling system configured
+
+===== Suggested Labels
+
+`frontend`, `setup`
+
+==== US-004: Backend API Scaffold
+
+*As a* developer +
+*I want* a backend service structure +
+*So that* APIs can be implemented efficiently.
+
+===== Acceptance Criteria
+
+* Server initialized
+* Environment configuration added
+* API routing configured
+* Error handling middleware added
+
+===== Suggested Labels
+
+`backend`, `setup`
+
+=== Epic 2 — Plant Identification
+
+==== US-005: Upload Plant Image
+
+*As a* user +
+*I want* to upload a plant photo +
+*So that* the system can identify my plant.
+
+===== Acceptance Criteria
+
+* User can upload images
+* Supported formats validated
+* Upload errors handled
+* Upload preview displayed
+
+===== Suggested Labels
+
+`frontend`, `backend`, `feature`
+
+==== US-006: AI Plant Identification
+
+*As a* user +
+*I want* the application to identify a plant from an image +
+*So that* I know what plant I own.
+
+===== Acceptance Criteria
+
+* AI model processes uploaded images
+* Plant species prediction returned
+* Confidence score displayed
+* Failed predictions handled gracefully
+
+===== Suggested Labels
+
+`ai`, `backend`, `feature`
+
+==== US-007: Plant Information Display
+
+*As a* user +
+*I want* detailed information about identified plants +
+*So that* I can better understand plant needs.
+
+===== Acceptance Criteria
+
+* Plant profile page available
+* Common name displayed
+* Scientific name displayed
+* Care information shown
+
+===== Suggested Labels
+
+`frontend`, `feature`
+
+=== Epic 3 — Plant Care Recommendations
+
+==== US-008: Watering Recommendation Engine
+
+*As a* user +
+*I want* watering recommendations +
+*So that* I avoid overwatering or underwatering.
+
+===== Acceptance Criteria
+
+* Watering frequency calculated
+* Recommendations based on plant type
+* Environmental adjustments supported
+* Recommendation history stored
+
+===== Suggested Labels
+
+`ai`, `backend`
+
+==== US-009: Sunlight Guidance
+
+*As a* user +
+*I want* sunlight recommendations +
+*So that* I can place my plant correctly.
+
+===== Acceptance Criteria
+
+* Light requirement displayed
+* Indoor/outdoor guidance available
+* Warning messages for poor conditions
+
+===== Suggested Labels
+
+`feature`, `frontend`
+
+==== US-010: Personalized Care Tips
+
+*As a* user +
+*I want* personalized care tips +
+*So that* my plants stay healthy.
+
+===== Acceptance Criteria
+
+* Care tips generated dynamically
+* Tips based on plant species
+* Seasonal advice included
+
+===== Suggested Labels
+
+`ai`, `feature`
+
+=== Epic 4 — Plant Health Diagnostics
+
+==== US-011: Detect Plant Problems
+
+*As a* user +
+*I want* the AI to detect plant issues +
+*So that* I can react quickly.
+
+===== Acceptance Criteria
+
+* User uploads unhealthy plant image
+* AI identifies probable issue
+* Severity level displayed
+* Multiple issues supported
+
+===== Suggested Labels
+
+`ai`, `backend`, `high-priority`
+
+==== US-012: Treatment Recommendations
+
+*As a* user +
+*I want* recommendations for solving plant problems +
+*So that* I can improve plant health.
+
+===== Acceptance Criteria
+
+* Suggested treatments displayed
+* Prevention tips included
+* Care adjustments recommended
+
+===== Suggested Labels
+
+`feature`, `ai`
+
+=== Epic 5 — User Management & Personalization
+
+==== US-013: User Registration
+
+*As a* user +
+*I want* to create an account +
+*So that* I can save my plant data.
+
+===== Acceptance Criteria
+
+* Registration form implemented
+* Email validation supported
+* Password validation enabled
+* Errors displayed clearly
+
+===== Suggested Labels
+
+`backend`, `frontend`, `auth`
+
+==== US-014: User Login
+
+*As a* user +
+*I want* secure authentication +
+*So that* my account remains protected.
+
+===== Acceptance Criteria
+
+* Login flow implemented
+* Session handling added
+* Logout supported
+* Unauthorized access blocked
+
+===== Suggested Labels
+
+`auth`, `security`
+
+==== US-015: Save Favorite Plants
+
+*As a* user +
+*I want* to save plants to my collection +
+*So that* I can track them later.
+
+===== Acceptance Criteria
+
+* Plants can be saved
+* User dashboard shows saved plants
+* Delete option available
+
+===== Suggested Labels
+
+`feature`, `frontend`, `backend`
+
+=== Epic 6 — Notifications & Reminders
+
+==== US-016: Watering Reminders
+
+*As a* user +
+*I want* reminders for watering schedules +
+*So that* I do not forget plant care tasks.
+
+===== Acceptance Criteria
+
+* Reminder scheduling available
+* Notifications delivered successfully
+* Users can enable/disable reminders
+
+===== Suggested Labels
+
+`notifications`, `feature`
+
+==== US-017: Care Alert Notifications
+
+*As a* user +
+*I want* alerts when plant health issues are detected +
+*So that* I can act quickly.
+
+===== Acceptance Criteria
+
+* Alerts generated automatically
+* Critical alerts highlighted
+* Notifications stored in dashboard
+
+===== Suggested Labels
+
+`notifications`, `ai`
+
+=== Epic 7 — Quality Assurance
+
+==== US-018: Unit Testing
+
+*As a* developer +
+*I want* automated unit tests +
+*So that* the application remains stable.
+
+===== Acceptance Criteria
+
+* Test framework configured
+* Core modules covered
+* Minimum coverage threshold enforced
+
+===== Suggested Labels
+
+`testing`, `backend`, `frontend`
+
+==== US-019: Responsive Design
+
+*As a* mobile user +
+*I want* the application to work on different devices +
+*So that* I can use it anywhere.
+
+===== Acceptance Criteria
+
+* Mobile layouts supported
+* Tablet layouts supported
+* Accessibility checks passed
+
+===== Suggested Labels
+
+`frontend`, `ux`
+
+==== US-020: Final Release Validation
+
+*As a* project stakeholder +
+*I want* final validation before release +
+*So that* the application is production-ready.
+
+===== Acceptance Criteria
+
+* End-to-end testing completed
+* Performance review completed
+* Security review completed
+* Release notes prepared
+
+===== Suggested Labels
+
+`release`, `qa`
+
+== Suggested Sprint Plan
+
+[cols="1,4", options="header"]
+|===
+| Sprint
+| Focus Area
+
+| Sprint 1
+| Repository setup, CI/CD, frontend/backend scaffolding
+
+| Sprint 2
+| Plant identification upload + AI integration
+
+| Sprint 3
+| Plant profiles and care recommendations
+
+| Sprint 4
+| Problem detection and treatment suggestions
+
+| Sprint 5
+| Authentication and saved plants
+
+| Sprint 6
+| Notifications, responsive UI, testing
+
+| Sprint 7
+| Bug fixing, optimization, deployment
+|===
+
+== Suggested GitHub Labels
+
+[cols="1,3", options="header"]
+|===
+| Label
+| Purpose
+
+| bug
+| Defect or malfunction
+
+| feature
+| New functionality
+
+| enhancement
+| Improvement to existing functionality
+
+| ai
+| AI/ML-related work
+
+| backend
+| Backend-related tasks
+
+| frontend
+| Frontend-related tasks
+
+| auth
+| Authentication/security
+
+| documentation
+| Documentation tasks
+
+| testing
+| QA/testing
+
+| ci/cd
+| Deployment pipeline
+
+| ux
+| User experience improvements
+
+| high-priority
+| Critical task
+
+| release
+| Release preparation
+|===
+
+== Branch Naming Convention
+
+[cols="1,3", options="header"]
+|===
+| Type
+| Example
+
+| Feature
+| feature/us-006-plant-identification
+
+| Bugfix
+| bugfix/login-validation
+
+| Hotfix
+| hotfix/security-patch
+
+| Documentation
+| docs/readme-update
+
+| Refactor
+| refactor/api-cleanup
+|===
+
+== Pull Request Template
+
+=== PR Title Format
+
+`[TYPE] Short Description`
+
+Examples:
+
+* `[FEATURE] Add AI plant identification endpoint`
+* `[FIX] Resolve login validation issue`
+* `[DOCS] Update setup instructions`
+
+=== Pull Request Description Template
+
+==== Summary
+
+Brief description of the implemented changes.
+
+==== Related Issue
+
+[source,text]
+----
+Closes #ISSUE_NUMBER
+----
+
+==== Changes Made
+
+* Added:
+* Updated:
+* Fixed:
+
+==== Testing
+
+* [ ] Unit tests passed
+* [ ] Manual testing completed
+* [ ] CI pipeline successful
+
+==== Screenshots (if applicable)
+
+Attach screenshots or UI previews.
+
+==== Checklist
+
+* [ ] Code follows project standards
+* [ ] Documentation updated
+* [ ] No console errors
+* [ ] PR reviewed before submission
+
+== Definition of Done (DoD)
+
+A task is considered complete when:
+
+* Code is implemented
+* Acceptance criteria are met
+* Tests pass successfully
+* PR is reviewed and approved
+* CI checks succeed
+* Documentation is updated
+* Changes are merged into the main branch
+
+== Suggested Tech Stack
+
+=== Frontend
+
+* React
+* TypeScript
+* Tailwind CSS
+
+=== Backend
+
+* Node.js
+* Express
+* REST API
+
+=== Database
+
+* PostgreSQL or MongoDB
+
+=== AI/ML
+
+* TensorFlow
+* OpenAI API
+* Plant identification model
+
+=== DevOps
+
+* GitHub Actions
+* Docker
+* Vercel or Render
+
+== Example Workflow
+
+. Create GitHub Issue
+. Assign milestone and labels
+. Create feature branch
+. Implement functionality
+. Push commits
+. Open Pull Request
+. Run CI checks
+. Review and approve PR
+. Merge into main
+. Close issue automatically

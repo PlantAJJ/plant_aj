@@ -1,0 +1,37 @@
+= Backend API
+:toc:
+:sectnums:
+:base-url: /api/v1
+
+== Health Check
+
+[source,http]
+----
+GET {base-url}/health
+----
+
+== Plant Identification
+
+[source,http]
+----
+POST {base-url}/plants/identify
+----
+
+=== Request
+
+[source,json]
+----
+{
+  "image": "base64-image"
+}
+----
+
+=== Response
+
+[source,json]
+----
+{
+  "plant": "Monstera Deliciosa",
+  "confidence": 0.97
+}
+----

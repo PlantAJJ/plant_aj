@@ -1,0 +1,22 @@
+= Backend Documentation
+:toc:
+:toclevels: 2
+:sectnums:
+:service-name: PlantAJ Backend
+:api-version: v1
+
+The {service-name} provides REST APIs and AI integration features.
+
+== Sections
+
+* xref:setup.adoc[Setup]
+* xref:api.adoc[API Documentation]
+* xref:architecture.adoc[Architecture]
+
+== Features
+
+* REST API
+* AI plant identification
+* Plant diagnostics
+* User authentication
+* Notification services
