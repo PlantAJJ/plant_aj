@@ -23,7 +23,6 @@ const projectStatus = [
   },
 ];
 
-
 function App() {
   const [count, setCount] = useState(0);
 
@@ -56,7 +55,7 @@ function App() {
       <PlantProfile />
 
       <div className="ticks"></div>
-      
+
       <section id="project-status" aria-label="Project setup status">
         {projectStatus.map((item) => (
           <article className="status-card" key={item.title}>

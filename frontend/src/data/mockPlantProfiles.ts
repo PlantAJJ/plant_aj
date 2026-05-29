@@ -60,4 +60,4 @@ export const mockPlantProfiles: PlantProfile[] = [
       humidity: "Prefers dry air.",
     },
   },
-]; 
+];
