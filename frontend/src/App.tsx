@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
+import { PlantProfile } from "./components/PlantProfile/PlantProfile";
 import "./App.css";
 
 const projectStatus = [
@@ -21,24 +22,6 @@ const projectStatus = [
     state: "documented",
   },
 ];
-
-const projectStatus = [
-  {
-    title: 'Frontend',
-    description: 'React + Vite workspace ready for UI development.',
-    state: 'ready',
-  },
-  {
-    title: 'Backend',
-    description: 'Python service scaffold prepared for API work.',
-    state: 'ready',
-  },
-  {
-    title: 'Workflow',
-    description: 'Issue labels and project statuses documented.',
-    state: 'documented',
-  },
-]
 
 function App() {
   const [count, setCount] = useState(0);
@@ -66,6 +49,10 @@ function App() {
           Count is {count}
         </button>
       </section>
+
+      <div className="ticks"></div>
+
+      <PlantProfile />
 
       <div className="ticks"></div>
 

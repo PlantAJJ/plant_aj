@@ -1,0 +1,42 @@
+.plant-profile-page {
+  width: min(1100px, 100%);
+  margin: 48px auto;
+  padding: 32px;
+}
+
+.plant-profile-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.plant-profile-header h2 {
+  margin-bottom: 8px;
+}
+
+.plant-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.plant-profile-card {
+  border: 1px solid #d9e4d0;
+  border-radius: 12px;
+  padding: 16px;
+  background-color: #f8fbf5;
+}
+
+.plant-profile-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.plant-profile-card ul {
+  padding-left: 18px;
+}
+
+@media (max-width: 800px) {
+  .plant-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
