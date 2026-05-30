@@ -19,7 +19,7 @@ export function PlantProfile() {
             </p>
 
             <p>
-              <strong>Scientific name:</strong> {plant.commonName}
+              <strong>Scientific name:</strong> {plant.scientificName}
             </p>
 
             <p>
