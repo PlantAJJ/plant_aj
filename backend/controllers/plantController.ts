@@ -1,20 +1,19 @@
 import { Request, Response } from "express";
-import { identifyPlant } from "../services/plantIdentificationService";
+import { identifyPlant } from "../services/plantIdentification.service";
 
 export async function identifyPlantController(
   req: Request,
   res: Response
 ) {
+  try {
+    const { imageUrl } = req.body;
 
-  const imageUrl = req.body.imageUrl;
+    const result = await identifyPlant(imageUrl);
 
-  const prediction = await identifyPlant(imageUrl);
-
-  if (!prediction) {
-    return res.status(500).json({
-      message: "Plant could not be identified"
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(400).json({
+      message: "Failed to identify plant",
     });
   }
-
-  return res.json(prediction);
 }
