@@ -153,6 +153,34 @@
   }
 }
 
+#plant-upload {
+  border-top: 1px solid var(--border);
+  padding: 28px 32px;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+
+  button {
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+  }
+
+  img {
+    width: 180px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
 #next-steps ul {
   list-style: none;
   padding: 0;

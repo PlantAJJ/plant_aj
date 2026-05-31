@@ -24,6 +24,35 @@ const projectStatus = [
 
 function App() {
   const [count, setCount] = useState(0)
+  const [plantPhoto, setPlantPhoto] = useState<File | null>(null)
+  const [previewUrl, setPreviewUrl] = useState('')
+  const [uploadMessage, setUploadMessage] = useState('')
+
+  const handlePlantPhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+
+    if (!file) {
+      return
+    }
+
+    if (!file.type.startsWith('image/')) {
+      setUploadMessage('Only plant image files are supported.')
+      return
+    }
+
+    setPlantPhoto(file)
+    setPreviewUrl(URL.createObjectURL(file))
+    setUploadMessage('')
+  }
+
+  const handleMockUpload = () => {
+    if (!plantPhoto) {
+      setUploadMessage('Choose a plant photo first.')
+      return
+    }
+
+    setUploadMessage('Upload complete. Identification queued.')
+  }
 
   return (
     <>
@@ -59,6 +88,18 @@ function App() {
             <p>{item.description}</p>
           </article>
         ))}
+      </section>
+
+      <div className="ticks"></div>
+
+      <section id="plant-upload" aria-label="Plant photo upload">
+        <h2>Plant photo upload</h2>
+        <input type="file" accept="image/*" onChange={handlePlantPhotoChange} />
+        <button type="button" onClick={handleMockUpload}>
+          Upload photo
+        </button>
+        {previewUrl && <img src={previewUrl} alt="Selected plant preview" />}
+        {uploadMessage && <p>{uploadMessage}</p>}
       </section>
 
       <div className="ticks"></div>
