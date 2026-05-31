@@ -5,16 +5,12 @@ export interface PlantPrediction {
 
 export async function identifyPlant(
   imageUrl: string
-): Promise<PlantPrediction | null> {
-
-  // Mock AI prediction
-
+): Promise<PlantPrediction> {
   if (!imageUrl) {
-    return null;
+    throw new Error("Missing image URL");
   }
-
   return {
     species: "Monstera Deliciosa",
-    confidence: 96
+    confidence: 0.96,
   };
 }
