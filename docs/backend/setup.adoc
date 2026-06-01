@@ -1,0 +1,33 @@
+= Backend Setup
+:toc:
+:sectnums:
+:node-version: 22
+
+== Requirements
+
+* Node.js {node-version}
+* npm
+* PostgreSQL
+
+== Installation
+
+[source,bash]
+----
+npm install
+----
+
+== Environment Variables
+
+[source,bash]
+----
+PORT=3000
+DATABASE_URL=postgres://localhost:5432/plantaj
+OPENAI_API_KEY=your_key
+----
+
+== Run Development Server
+
+[source,bash]
+----
+npm run dev
+----

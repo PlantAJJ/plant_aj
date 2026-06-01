@@ -37,3 +37,9 @@ Basic rules:
 4. Look at the top right corner of the secrets grid. Click on the **Download** icon.
 5. A `dev.env` file containing all the keys and values will immediately download to your computer.
 6. Move this downloaded file into the root directory of your project repository and ensure it is named exactly `.env`.
+
+## Documentation
+
+[Documentation](https://plantajj.github.io/plant_aj/)
+
+[Wiki](https://github.com/PlantAJJ/plant_aj/wiki)

@@ -1,4 +1,27 @@
 {localdatetime}
 
 = PlantAJ Documentation
+:toc:
+:toclevels: 3
+:sectnums:
+:project-name: PlantAJ
+:backend-dir: backend
+:frontend-dir: frontend
 
+Welcome to the {project-name} documentation.
+
+== Documentation Sections
+
+=== Backend Documentation
+
+* xref:{backend-dir}/index.adoc[Backend Overview]
+* xref:{backend-dir}/setup.adoc[Backend Setup]
+* xref:{backend-dir}/api.adoc[Backend API]
+* xref:{backend-dir}/architecture.adoc[Backend Architecture]
+
+=== Frontend Documentation
+
+* xref:{frontend-dir}/index.adoc[Frontend Overview]
+* xref:{frontend-dir}/setup.adoc[Frontend Setup]
+* xref:{frontend-dir}/components.adoc[Frontend Components]
+* xref:{frontend-dir}/architecture.adoc[Frontend Architecture]

@@ -1,0 +1,98 @@
+.favourite-plants-page {
+  width: min(1100px, 100%);
+  margin: 48px auto;
+  padding: 32px;
+}
+
+.favourite-plants-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.favourite-plants-header h2 {
+  margin-bottom: 8px;
+}
+
+.plants-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.plants-section,
+.dashboard-section {
+  border: 1px solid #d9e4d0;
+  border-radius: 16px;
+  padding: 24px;
+  background-color: #ffffff;
+}
+
+.plants-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.plant-card,
+.saved-plant-card {
+  border: 1px solid #d9e4d0;
+  border-radius: 12px;
+  padding: 16px;
+  background-color: #f8fbf5;
+}
+
+.plant-card h4,
+.saved-plant-card h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.plant-card ul {
+  padding-left: 18px;
+}
+
+.plant-card button,
+.saved-plant-card button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background-color: #4f8f46;
+  color: white;
+  font-weight: 600;
+}
+
+.plant-card button:disabled {
+  cursor: not-allowed;
+  background-color: #a8b8a3;
+}
+
+.saved-plants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.saved-plant-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.saved-plant-card .delete-button {
+  background-color: #c43d3d;
+}
+
+.empty-message {
+  color: #66735f;
+}
+
+@media (max-width: 800px) {
+  .plants-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .plants-grid {
+    grid-template-columns: 1fr;
+  }
+}

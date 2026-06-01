@@ -1,0 +1,34 @@
+= Backend Architecture
+:toc:
+:sectnums:
+
+== Overview
+
+The backend follows a layered architecture.
+
+== Layers
+
+[cols="1,3", options="header"]
+|===
+| Layer
+| Responsibility
+
+| Controllers
+| Handle HTTP requests
+
+| Services
+| Business logic
+
+| Repositories
+| Database access
+
+| AI Integration
+| External AI provider communication
+|===
+
+== Technologies
+
+* Node.js
+* Express
+* PostgreSQL
+* OpenAI API
